@@ -6,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<PetContext>(opt => opt.UseInMemoryDatabase("Pet"));
-builder.Services.AddScoped<PetRepository>();
+builder.Services.AddDbContext<PetOwnerContext>(opt => opt.UseInMemoryDatabase("Pet"));
+builder.Services.AddScoped<PetOwnerRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

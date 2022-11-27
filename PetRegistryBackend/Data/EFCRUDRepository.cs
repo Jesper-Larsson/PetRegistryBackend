@@ -18,7 +18,7 @@ namespace PetRegistryBackend.Data
         }
 
         public async Task<ModelClass> Get(long id) {
-            if (_context.Set<ModelClass>() == null) {
+           if (_context.Set<ModelClass>() == null) {
                 return default(ModelClass);
             }
             return await _context.Set<ModelClass>().FindAsync(id);
