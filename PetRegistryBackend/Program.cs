@@ -1,7 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using PetRegistryBackend.Data;
 
+var cors = "cors";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: cors,
+                      policy => {
+                          policy.WithOrigins("http://localhost:3000");
+                      });
+});
 
 // Add services to the container.
 
@@ -21,6 +30,8 @@ if (app.Environment.IsDevelopment()) {
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(cors);
 
 app.UseAuthorization();
 
