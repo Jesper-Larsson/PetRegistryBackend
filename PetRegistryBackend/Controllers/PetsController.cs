@@ -27,7 +27,7 @@ namespace PetRegistryBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pet>>> GetPets()
         {
-            return Ok(await _repo.GetAllPets());
+            return Ok(await _repo.GetAll());
         }
 
         // GET: api/Pets/5
@@ -50,7 +50,7 @@ namespace PetRegistryBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePet(long id)
         {
-            var result = await _repo.DeletePet(id);
+            var result = await _repo.Delete(id);
             return result == -1 ? NotFound() : Ok();
         }
 

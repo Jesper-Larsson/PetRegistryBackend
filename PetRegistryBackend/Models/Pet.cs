@@ -1,9 +1,6 @@
 ﻿namespace PetRegistryBackend.Models {
-    public class Pet {
-        public long Id { get; set; }
+    public class Pet : Model{
         public string Name { get; set; }
-
-
 
     }
 }

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using PetRegistryBackend.Data;
-using PetRegistryBackend.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
