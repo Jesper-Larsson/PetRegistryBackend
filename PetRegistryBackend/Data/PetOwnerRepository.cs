@@ -10,8 +10,8 @@ namespace PetRegistryBackend.Data {
 
         }
         public async Task<PetOwner> GetOwnerByName(string name) {
-            return await _context.PetOwners.Where(owner => owner.FirstName.Equals(name)
-            || owner.LastName.Equals(name))
+            return await _context.PetOwners.Where(owner => owner.FirstName.Contains(name)
+            || owner.LastName.Contains(name))
                 .FirstOrDefaultAsync();
         }
 
@@ -30,7 +30,7 @@ namespace PetRegistryBackend.Data {
             var result = await _context.PetOwners.FindAsync(id);
             if (result != null) {
                 _context.Entry(result)
-                    .Reference(owner => owner.Pets)
+                    .Collection(owner => owner.Pets)
                     .Load();
             }
             return result;
