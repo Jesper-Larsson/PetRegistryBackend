@@ -8,5 +8,6 @@ namespace PetRegistryBackend.Data {
         }
 
         public DbSet<PetOwner> PetOwners { get; set;}
+        public DbSet<Pet> Pets { get; set;}
     }
 }

@@ -2,12 +2,14 @@
 using PetRegistryBackend.Models;
 
 namespace PetRegistryBackend.Data {
-    public interface ICRUDRepository<T> {
-        public Task<IEnumerable<T>> GetAll();
+    public interface ICRUDRepository<ModelClass> {
+        public Task<IEnumerable<ModelClass>> GetAll();
 
-        public Task<T> Get(long id);
-        public Task<int> Add(T model);
+        public Task<ModelClass> Get(long id);
+        public Task<int> Add(ModelClass model);
 
         public Task<int> Delete(long id);
+
+        public Task<int> Update(long id, ModelClass model);
     }
 }

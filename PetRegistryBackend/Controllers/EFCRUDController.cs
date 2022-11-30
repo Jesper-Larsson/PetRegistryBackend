@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PetRegistryBackend.Controllers;
 using PetRegistryBackend.Data;
 using PetRegistryBackend.Models;
@@ -44,5 +45,14 @@ namespace modelRegistryBackend.Controllers
             return result == -1 ? NotFound() : Ok();
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(long id, ModelClass model) {
+            if (id != model.Id) {
+                return BadRequest();
+            }
+            var result = await _repo.Update(id, model);
+
+            return result == -1 ? BadRequest() : NoContent();
+        }
     }
 }

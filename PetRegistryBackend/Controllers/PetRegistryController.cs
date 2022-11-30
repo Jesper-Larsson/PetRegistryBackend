@@ -42,5 +42,15 @@ namespace PetRegistryBackend.Controllers {
             return result == null? NotFound() : Ok(result);
         }
 
+        [HttpPut("ownerandpets/{id}")]
+        public async Task<IActionResult> UpdateOwnerAndPets(long id, PetOwner owner) {
+            if (id != owner.Id) {
+                return BadRequest();
+            }
+            var result = await _repo.UpdateOwnerAndPets(id, owner);
+
+            return result == -1 ? BadRequest() : NoContent();
+        }
+
     }
 }
