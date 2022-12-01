@@ -16,14 +16,14 @@ namespace PetRegistryBackend.Controllers {
 
         [Route("owner/{name}")]
         [HttpGet]
-        public async Task<ActionResult<PetOwner>> GetOwnerByName(string name) {
+        public async Task<ActionResult<IEnumerable<PetOwner>>> GetOwnerByName(string name) {
             var result = await _repo.GetOwnerByName(name);
             return result == null ? NotFound() : Ok(result);
         }
 
         [Route("pet/{name}")]
         [HttpGet]
-        public async Task<ActionResult<PetOwner>> GetOwnerByPetName(string name) {
+        public async Task<ActionResult<IEnumerable<PetOwner>>> GetOwnerByPetName(string name) {
             var result = await _repo.GetOwnerByPetName(name);
             return result == null ? NotFound() : Ok(result);
         }

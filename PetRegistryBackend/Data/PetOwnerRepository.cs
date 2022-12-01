@@ -10,16 +10,16 @@ namespace PetRegistryBackend.Data {
         public PetOwnerRepository(PetOwnerContext context) : base(context) {
 
         }
-        public async Task<PetOwner> GetOwnerByName(string name) {
-            return await _context.PetOwners.Where(owner => owner.FirstName.Contains(name)
-            || owner.LastName.Contains(name))
-                .FirstOrDefaultAsync();
+        public async Task<IEnumerable<PetOwner>> GetOwnerByName(string name) {
+            return await _context.PetOwners.Where(owner => owner.FirstName.ToLower().Contains(name.Trim().ToLower())
+            || owner.LastName.ToLower().Contains(name.Trim().ToLower()))
+                .ToListAsync();
         }
 
-        public async Task<PetOwner> GetOwnerByPetName(string name) {
-            return await _context.PetOwners.Where(owner => owner.Pets.Select((pet) => pet.Name)
-            .Contains(name))
-                .FirstOrDefaultAsync();
+        public async Task<IEnumerable<PetOwner>> GetOwnerByPetName(string name) {
+            return await _context.PetOwners.Where(owner => owner.Pets.Select((pet) => pet.Name.ToLower())
+            .Where((petName) => petName.Contains(name.Trim().ToLower())).Count() > 0)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<PetOwner>> GetAllOwnersAndPets() {
